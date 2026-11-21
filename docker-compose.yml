@@ -8,6 +8,9 @@ services:
     environment:
       # 机架拓扑：逗号分隔各机架节点数；3x4 表示 4 个机架、每个 3 节点
       CLUSTER_RACKS: "4,4"
+      # 百万节点示例（选点已按堆优化，提交/预约仍为亚毫秒级）：
+      # CLUSTER_RACKS: "1000000"        # 单机架 100 万节点
+      # CLUSTER_RACKS: "1000x1000"      # 1000 个机架、每个 1000 节点
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/').status==200 else 1)"]
       interval: 10s
